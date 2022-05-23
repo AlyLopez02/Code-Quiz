@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div id="highscores">View Highscores</div>
+        <div id="timer">Time: 60</div>
+    </header>
+
+    <main>
+
+        <div class="first-page">
+            <h1>Code Quiz Challenge!</h1>
+            <p id="introduction">
+                This is a multiple choice quiz so do your best to select the answer you think is correct! Your score will
+                be saved at the end of the quiz so be sure to do your best. Click the button below to get started!
+            </p>
+            <div class="button">
+                <button id="start-button">Start Quiz</button>
+            </div>
+        </div>
+
+        <div class="question-pages hide">
+            <h2 id="the-questions"></h2>
+            <br>
+            <!-- buttons -->
+            <div class="button options">
+                <button id="a"> </button> <br>
+                <button id="b"> </button> <br>
+                <button id="c"> </button> <br>
+                <button id="d"> </button> <br>
+            </div>
+            
+            <!-- form -->
+             <form>
+                <input type="radio" id="aa">
+                <label for="aa"></label>
+            </form>
+            
+            <p>------------------------------------</p>
+            <p id="previous-question-result"></p>
+        </div>
+
+        <div class="results hide">
+            <h1>Times Up!</h1>
+
+        </div>
+
+        <div class="highscore-page hide">
+            <h1>Highscores!</h1>
+            
+        </div>
+
+    </main>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

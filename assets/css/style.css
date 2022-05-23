@@ -1,0 +1,88 @@
+/* General Styles */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+h2 {
+    margin: 30px auto;
+    text-align: center;
+    width: 1000px;
+}
+
+
+p {
+    text-align: center;
+    width: 500px;
+    justify-content: center;
+    margin: auto;
+    padding: 25px;
+}
+
+
+
+/* Header Styles */
+#timer {
+    float: right;
+}
+
+
+
+
+/* Main Styles */
+
+.button {
+        text-align: center;
+    }
+
+.first-page {
+    
+}
+
+    #start-button, #a, #b, #c, #d {
+        background-color: turquoise;
+        padding: 15px 30px 15px 30px;
+        font-size: 15px;
+        border-radius: 15px;
+        margin: 20px;
+    }
+
+
+    #start-button:hover {
+        filter: brightness(80%);
+    }
+
+
+    
+.question-pages {
+
+}
+    
+    #a:hover, #b:hover, #c:hover, #d:hover {
+        filter: brightness(80%);
+    }
+
+
+
+
+.results {
+    
+}
+
+.highscore-page {
+
+}
+
+
+.hide {
+    display: none;
+}
