@@ -16,8 +16,8 @@
     </header>
 
     <main>
-
-        <div class="first-page">
+        <!-- Start Page -->
+        <div class="start-page">
             <h1>Code Quiz Challenge!</h1>
             <p id="introduction">
                 This is a multiple choice quiz so do your best to select the answer you think is correct! Your score will
@@ -28,35 +28,80 @@
             </div>
         </div>
 
-        <div class="question-pages hide">
-            <h2 id="the-questions"></h2>
+        <!-- First Question Page -->
+        <div class="first-question hide">
+            <h2 id="the-questions">Which of the following is the correct way to use the 'addElementById' method for a custom named id in Javascript?</h2>
             <br>
-            <!-- buttons -->
-            <div class="button options">
-                <button id="a"> </button> <br>
-                <button id="b"> </button> <br>
-                <button id="c"> </button> <br>
-                <button id="d"> </button> <br>
-            </div>
-            
-            <!-- form -->
-             <form>
-                <input type="radio" id="aa">
-                <label for="aa"></label>
-            </form>
-            
+            <div class="button" id="options-one">
+                <button class="possible-answers" id="1a">document.getElementById(.button)</button> <br>
+                <button class="possible-answers" id="1b">document.getElementById("button")</button> <br>
+                <button class="possible-answers" id="1c">document.getElementById(" .button")</button> <br>
+                <button class="possible-answers" id="1d">file.getElementById("button")</button> <br>
+            </div>     
             <p>------------------------------------</p>
-            <p id="previous-question-result"></p>
         </div>
 
+        <!-- Second Question Page -->
+        <div class="second-question hide">
+            <h2 id="the-questions">What method is used to call a function when one creates an event?</h2>
+            <br>
+            <div class="button" id="options-two">
+                <button class="possible-answers" id="2a">.addEventListener()</button> <br>
+                <button class="possible-answers" id="2b">.listenForEvent()</button> <br>
+                <button class="possible-answers" id="2c">.addEventReaction()</button> <br>
+                <button class="possible-answers" id="2d">.eventStarter()</button> <br>
+            </div>     
+            <p>------------------------------------</p>
+            <p id="result1"></p>
+        </div>
+
+        <!-- Third Question Page -->
+        <div class="third-question hide">
+            <h2 id="the-questions">What type of file is usually used to format a webpage?</h2>
+            <br>
+            <div class="button" id="options-three">
+                <button class="possible-answers" id="3a">HTML</button> <br>
+                <button class="possible-answers" id="3b">Javascript</button> <br>
+                <button class="possible-answers" id="3c">CSS</button> <br>
+                <button class="possible-answers" id="3d">Formatter</button> <br>
+            </div>     
+            <p>------------------------------------</p>
+            <p id="result2"></p>
+        </div>
+
+        <!-- Fourth Question Page -->
+        <div class="fourth-question hide">
+            <h2 id="the-questions">What does the API stand for in Web API?</h2>
+            <br>
+            <div class="button" id="options-four">
+                <button class="possible-answers" id="4a">Absolute Programmer Intuitive</button> <br>
+                <button class="possible-answers" id="4b">Application Performance Increase</button> <br>
+                <button class="possible-answers" id="4c">Application Programmer Interface</button> <br>
+                <button class="possible-answers" id="4d">Application Programming Interface</button> <br>
+            </div>     
+            <p>------------------------------------</p>
+            <p id="result3"></p>
+        </div>
+
+
+        <!-- Results Page -->
         <div class="results hide">
-            <h1>Times Up!</h1>
+            <h1>You either finished or ran out of time!</h1>
+            <p id="user-score"></p>
+            <form id="initials-form">
+                <label for="initials">Enter your intials:</label>            
+                <input type="text" name="initials"></input>
+                <input type="submit">
+            </form>
 
         </div>
 
+        <!-- Highscore Page -->
         <div class="highscore-page hide">
             <h1>Highscores!</h1>
-            
+            <ul id="highscore-list">
+
+            </ul>
         </div>
 
     </main>

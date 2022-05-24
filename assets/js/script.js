@@ -1,88 +1,104 @@
 // Variables for more than one page
 var allHighscores = document.querySelector("#highscores");
 var timer = document.querySelector("#timer");
-var title = document.querySelector("h1");
-var paragraph = document.querySelector("p");
+var totalPoints = 0; //points earned during quiz
+var secondsLeft = 59;
 
-
-
-
-
-// Pages
-    // the variables in those pages
-var firstPage = document.querySelector(".first-page");
+// Variables for one page
+    // start page
+    var startPage = document.querySelector(".start-page");
     var startBtn = document.querySelector("#start-button");
 
-var questionPage = document.querySelector(".question-pages");
-    var theQuestions = document.querySelector("#the-questions");
-    var options = document.querySelector(".options");
-    var btnA = document.querySelector("#a");
-    var btnB = document.querySelector("#b");
-    var btnC = document.querySelector("#c");
-    var btnD = document.querySelector("#d");
-    var prevQuestionResult = document.querySelector("#previous-question-result");
+    // First question page
+    var firstQuestion = document.querySelector(".first-question");
+    var correctOne = document.getElementById("1b")
 
-var resultsPage = document.querySelector(".results");
+    // Second question page
+    var secondQuestion = document.querySelector(".second-question");
+    var correctTwo = document.getElementById("2a")
+    var resultOne = document.getElementById("result1");
 
-var highscorePage = document.querySelector(".highscore-page");
+    // Third question page
+    var thirdQuestion = document.querySelector(".third-question");
+    var correctThree = document.getElementById("3c")
+    var resultTwo = document.getElementById("result2");
 
+    // Fourth question page
+    var fourthQuestion = document.querySelector(".fourth-question");
+    var correctFour = document.getElementById("4d")
+    var resultThree = document.getElementById("result3");
 
+    // Results page
+    var resultsPage = document.querySelector(".results");
+    var initialsForm = document.getElementById("initials-form");
+    var initialsInput = document.getElementById("initials");
 
-
-// Total Points one earns (or doesn't earn) during the quiz
-var totalPoints = "0"
-
-
-// Functions & co.
-var multipleChoice = [     //(Berhanu & Hibbard, 2020)
-    {
-        question: "Which of the following is the correct way to use the 'addElementById' method for a custom named id in Javascript?",
-        possibleAnswers: {
-            a: " document.getElementById(.button) ",
-            b: " document.getElementById(\"button\") ",
-            c: " document.getElementById(\" .button\") ",
-            d: " file.getElementById(\"button\") "
-        },
-        answer: "b"
-    },
-    {
-        question: "What method is used to call a function when one creates an event?",
-        possibleAnswers: {
-            a: " .addEventListener() ",
-            b: " .listenForEvent() ",
-            c: " .addEventReaction() ",
-            d: " .eventStarter() "
-        },
-        answer: "a"
-    },
-    {
-        question: "What type of file is usually used to format a webpage?",
-        possibleAnswers: {
-            a: " HTML ",
-            b: " Javascript ",
-            c: " CSS ",
-            d: " Formatter "
-        },
-        answer: "c"
-    },
-    {
-        question: "What does the API stand for in Web API?",
-        possibleAnswers: {
-            a: " Absolute Programmer Intuitive ",
-            b: " Application Performance Increase ",
-            c: " Application Programmer Interface ",
-            d: " Application Programming Interface "
-        },
-        answer: "d"
-    },
-]
+    // Highscores page
+    var highscorePage = document.querySelector(".highscore-page");
+    var highscoreList = document.getElementById("highscore-list");
 
 
+// variable to hold all highscores
+    var scores = [];
+
+// functions to render and save scores
+function renderScores(){
+
+    for (var i = 0; i < scores.length; i++) {
+        var score = scores[i];
+
+        var li = document.createElement("li");
+
+        li.textContent = score;
+        li.setAttribute("data-index", i);
+
+        highscoreList.appendChild(li);
+    }
+};
+
+function init() {
+    var storedScores = JSON.parse(localStorage.getItem("scores"));
+
+    if (storedScores !== null) {
+        scores = storedScores;
+    }
+
+    renderScores();
+};
+
+function storeScores() {
+    localStorage.setItem("scores", JSON.stringify(scores));
+};
+
+initialsForm.addEventListener("submit", function(event) {
+    var scoreInitials = initialsInput.value.trim();
+
+    if (scoreInitials === ""){
+        return;
+    }
+
+    scores.push(scoreInitials);
+    initialsInput.value = "";
+
+    storeScores();
+    renderScores();
+});
 
 
+// other functions
+
+allHighscores.addEventListener("click", viewHighscores);
+
+function viewHighscores() {
+    hideQuestionPages();
+    resultsPage.classList.add("hide");
+    startPage.classList.add("hide");
+    highscorePage.classList.remove("hide");
+
+    init();
+};
 
 function setTime() {
-    var secondsLeft = 59;
 
     var timerInterval = setInterval(function() {
         if (secondsLeft >= 1) {
@@ -91,66 +107,119 @@ function setTime() {
         } else {
             timer.textContent = "Time: " + secondsLeft;
             clearInterval(timerInterval);
+            hideQuestionPages();
             showResults();
         }
     }, 1000);
-    
-}
+
+};
 
 
 
-function beginQuiz() {
-    firstPage.classList.add("hide");
-    questionPage.classList.remove("hide");
-    theQuestions.textContent = multipleChoice[0].question
-    btnA.textContent = multipleChoice[0].possibleAnswers["a"]
-    btnB.textContent = multipleChoice[0].possibleAnswers["b"]
-    btnC.textContent = multipleChoice[0].possibleAnswers["c"]
-    btnD.textContent = multipleChoice[0].possibleAnswers["d"]
+function startQuiz() {
+    startPage.classList.add("hide");
+    firstQuestion.classList.remove("hide");
 
-    options.addEventListener("click", function(event) {
-        if (event === multipleChoice[0].answer){
-            prevQuestionResult.textContent = "You answered correctly!";
-            totalPoints + 25;
+    var optionsOne = document.getElementById("options-one");
+
+    optionsOne.addEventListener("click", function(event) {
+        firstQuestion.classList.add("hide");
+        secondQuestion.classList.remove("hide")
+        if (event.target === correctOne) {
+            resultOne.textContent = "You answered correctly!";
+            totalPoints = totalPoints + 25;
         } else {
-            prevQuestionResult.textContent = "You answered incorrectly!";
+            resultOne.textContent = "You answered incorrectly!";
+            secondsLeft -= 10;
         }
+        console.log(totalPoints);
+    })
+
+    questionTwo();
+};
+
+function questionTwo() {
+    var optionsTwo = document.getElementById("options-two")
+    
+    optionsTwo.addEventListener("click", function(event){
+        secondQuestion.classList.add("hide");
+        thirdQuestion.classList.remove("hide");
+        if (event.target === correctTwo) {
+            resultTwo.textContent = "You answered correctly!";
+            totalPoints = totalPoints + 25;
+        } else {
+            resultTwo.textContent = "You answered incorrectly!";
+            secondsLeft -= 10;
+        }
+        console.log(totalPoints);
+
+    })
+
+    questionThree();
+};
+
+function questionThree() {
+    var optionsThree = document.getElementById("options-three")
+    
+    optionsThree.addEventListener("click", function(event){
+        thirdQuestion.classList.add("hide");
+        fourthQuestion.classList.remove("hide");
+        if (event.target === correctThree) {
+            resultThree.textContent = "You answered correctly!";
+            totalPoints = totalPoints + 25;
+        } else {
+            resultThree.textContent = "You answered incorrectly!";
+            secondsLeft -= 10;
+        }
+        console.log(totalPoints);
+
+    })
+
+    questionFour();
+};
+
+function questionFour() {
+    
+    var optionsFour = document.getElementById("options-four")
+    
+    optionsFour.addEventListener("click", function(event){
+        fourthQuestion.classList.add("hide");
+        if (event.target === correctFour) {
+            totalPoints = totalPoints + 25;
+            secondsLeft = 0;
+        } else {
+            secondsLeft = 0;
+         }
 
 
-    }
-    )
-}
+    })
+};
 
 
 
-
-
-
-
-
-
-
-
-
+function hideQuestionPages(){
+    firstQuestion.classList.add("hide");
+    secondQuestion.classList.add("hide");
+    thirdQuestion.classList.add("hide");
+    fourthQuestion.classList.add("hide");
+};
 
 
 
 function showResults(){
-    questionPage.classList.add("hide");
     resultsPage.classList.remove("hide");
+    var userScore = document.getElementById("user-score");
+    userScore.textContent = "Your final score is: " + totalPoints + " points!";
+
     
+};
+
     // add in a line telling them of their highscore
     // ask them to input their initials into a textbox and have them click a button
     // the button saves the information and changes the page to show the highscores   //might need to do outside of this function
     // then a button on that page sends them back to the starting point of the quiz   //might need to do outside of this function
-}
+
+
 
 startBtn.addEventListener("click", setTime);
-startBtn.addEventListener("click", beginQuiz); //insert the name of the function that will create the quiz here
-
-
-
-
-// References
-// Berhanu, Y., & Hibbard, J. (2020, February 11). How to make a simple javascript quiz. SitePoint. https://www.sitepoint.com/simple-javascript-quiz/
-// 
+startBtn.addEventListener("click", startQuiz);

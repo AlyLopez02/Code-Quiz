@@ -41,45 +41,33 @@ p {
 /* Main Styles */
 
 .button {
-        text-align: center;
-    }
-
-.first-page {
-    
+    text-align: center;
 }
 
-    #start-button, #a, #b, #c, #d {
-        background-color: turquoise;
-        padding: 15px 30px 15px 30px;
-        font-size: 15px;
-        border-radius: 15px;
-        margin: 20px;
-    }
 
-
-    #start-button:hover {
-        filter: brightness(80%);
-    }
-
-
-    
-.question-pages {
-
-}
-    
-    #a:hover, #b:hover, #c:hover, #d:hover {
-        filter: brightness(80%);
-    }
-
-
-
-
-.results {
-    
+#start-button, .possible-answers {
+    background-color: turquoise;
+    padding: 15px 30px 15px 30px;
+    font-size: 15px;
+    border-radius: 15px;
+    margin: 20px;
 }
 
-.highscore-page {
 
+#start-button:hover {
+    filter: brightness(80%);
+}
+
+
+
+
+
+.possible-answers:hover {
+    filter: brightness(80%);
+}
+
+form {
+    text-align: center;
 }
 
 
