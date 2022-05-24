@@ -36,6 +36,7 @@ var secondsLeft = 59;
     // Highscores page
     var highscorePage = document.querySelector(".highscore-page");
     var highscoreList = document.getElementById("highscore-list");
+    var backBtn = document.getElementById("go-back");
 
 
 // variable to hold all highscores
@@ -43,6 +44,7 @@ var secondsLeft = 59;
 
 // functions to render and save scores
 function renderScores(){
+    highscoreList.innerHTML = "";
 
     for (var i = 0; i < scores.length; i++) {
         var score = scores[i];
@@ -71,6 +73,8 @@ function storeScores() {
 };
 
 initialsForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    
     var scoreInitials = initialsInput.value.trim();
 
     if (scoreInitials === ""){
@@ -223,3 +227,8 @@ function showResults(){
 
 startBtn.addEventListener("click", setTime);
 startBtn.addEventListener("click", startQuiz);
+
+backBtn.addEventListener("click", function(event){
+    highscorePage.classList.add("hide");
+    startPage.classList.remove("hide");
+})

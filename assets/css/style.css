@@ -45,7 +45,7 @@ p {
 }
 
 
-#start-button, .possible-answers {
+#start-button, .possible-answers, #go-back, #clear {
     background-color: turquoise;
     padding: 15px 30px 15px 30px;
     font-size: 15px;
@@ -54,17 +54,13 @@ p {
 }
 
 
-#start-button:hover {
+#start-button:hover, .possible-answers:hover, #go-back:hover, #clear:hover {
     filter: brightness(80%);
 }
 
 
 
 
-
-.possible-answers:hover {
-    filter: brightness(80%);
-}
 
 form {
     text-align: center;
