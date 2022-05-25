@@ -35,6 +35,9 @@ p {
     float: right;
 }
 
+#highscores:hover {
+    color: blue;
+}
 
 
 

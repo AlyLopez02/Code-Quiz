@@ -77,7 +77,7 @@ function storeScores() {
 };
 
 // Functions for header
-// function to view highscore page
+// function to display highscore page
 function viewHighscores() {
     hideQuestionPages();
     resultsPage.classList.add("hide");
